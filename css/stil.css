@@ -1,0 +1,12 @@
+.footer{
+	margin-bottom: 0px;
+	height: 10%;
+	text-align: center;
+}
+.prijava {
+	text-align: center;
+	margin-top: 25%;
+}
+.prijava input {
+	width: 90%;
+}
