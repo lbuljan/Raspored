@@ -1,7 +1,21 @@
-.footer{
-	margin-bottom: 0px;
-	height: 10%;
+body{
+	background-color: #FFF;
+}
+.centar{
 	text-align: center;
+}
+.dodaj{
+	cursor: pointer;
+}
+.footer{
+	position: fixed;
+	bottom: 0px;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+	text-align: center;
+	background-color: #283018;
+	font-size: 1.2em;
 }
 .prijava {
 	text-align: center;
@@ -9,4 +23,29 @@
 }
 .prijava input {
 	width: 90%;
+}
+.traka{
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	background-color: #283018;
+	font-size: 1.2em;
+}
+.predmet{
+	min-height: 275px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.predmet hr{
+	height: 9px;
+}
+.traka a, .traka strong, .footer strong{
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: white;
+}
+.naslov{
+	font-family: 'Open Sans Condensed', sans-serif;
+	line-height: 38px;
+	color: #729f98;
+	text-align: left;
 }

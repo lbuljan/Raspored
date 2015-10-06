@@ -1,6 +1,6 @@
-<div class="row footer">
+<div class="footer">
 	<div class="small-12 columns">
-		<p> Copyright @LBuljan </p>
+		<strong> Copyright @LBuljan </strong>
 	</div>	
 </div>
 
