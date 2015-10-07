@@ -3,9 +3,26 @@ body{
 }
 .centar{
 	text-align: center;
+	line-height: 100%;
 }
-.dodaj{
+.izostanci{
+	color: #729f98;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.5em;
+}
+input[type="text"]{
+	height: 50px;
+}
+.dodaj, .oduzmi{
 	cursor: pointer;
+	height: 40px;
+	width: 40px;
+	transition: 0.25s height, 0.25s width;
+}
+.dodaj:hover, .oduzmi:hover{
+	transition: 0.25s height, 0.25s width;
+	height: 45px;
+	width: 45px;
 }
 .footer{
 	position: fixed;
@@ -19,7 +36,7 @@ body{
 }
 .prijava {
 	text-align: center;
-	margin-top: 25%;
+	margin-top: 10%;
 }
 .prijava input {
 	width: 90%;
@@ -48,4 +65,9 @@ body{
 	line-height: 38px;
 	color: #729f98;
 	text-align: left;
+}
+@media screen and (max-width: 600px){
+	.footer{
+		display: none;
+	}
 }

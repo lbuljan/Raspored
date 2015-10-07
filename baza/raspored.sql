@@ -6,7 +6,8 @@ alter database character set utf8 collate utf8_general_ci;
 
 create table korisnik(
 	sifra int not null primary key auto_increment,
-	korisnik varchar(30) not null
+	korisnik varchar(30) not null,
+	slika varchar(100)
 );
 
 create table slusa(

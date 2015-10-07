@@ -6,11 +6,12 @@
 				<input type="text" name="korisnik" placeholder="Korisničko ime"/>
 				<input type="submit" id="prijavi" class="small radius button" value="Prijavi se" />
 			</form>
-			<?php if(isset($_GET["err"])):?>
-				<p>
-					Nepostojeći korisnik.
-				</p>
-			<?php endif;?>
+			<?php 
+			if(isset($_GET["err"])):
+				if($_GET["err"]==1):?>
+					<p> Nepostojeći korisnik </p>
+				<?php endif;
+			endif;?>
 			<a href="registracija.php"> Registriraj se! </a>
 		</div>
 	</div>

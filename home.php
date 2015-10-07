@@ -1,5 +1,9 @@
-<?php include_once "head.php";?>
-<?php
+<?php 
+include_once "head.php";
+
+if(!isset($_SESSION["operater"])):
+	header("location: index.php");
+endif;
 	
 	$predmeti = $con->prepare("select * from korisnik inner join slusa on slusa.korisnik=korisnik.sifra inner join predmet on slusa.predmet=predmet.sifra where slusa.korisnik=:u");
 	$predmeti->bindParam(":u", $_SESSION["operater"]->sifra);
@@ -11,8 +15,14 @@
 	<div class="traka">
 		<div class="row">
 			<div class="small-12 columns">
-				<strong style="float: left;"> <?php echo $_SESSION["operater"]->korisnik;?> </strong>
-				<a href="prijaviPredmete.php" style="float: right;"> Prijavi predmete </a> 
+				<div class="small-3 columns">
+				<?php if(isset($_SESSION["operater"]->slika)):?>
+					<img style="height: 40px; max-width: 60px; line-height: 40px;" src="img/profilne/<?php echo $_SESSION["operater"]->slika;?>" />
+				<?php endif;?>				</div>
+				<div class="small-9 columns">
+					<strong style="float: left;"> <?php echo $_SESSION["operater"]->korisnik;?> </strong>
+					<a href="predmeti.php" style="float:right;"> Predmeti </a> 
+				</div>
 			</div>
 		</div>
 	</div>
@@ -47,7 +57,8 @@
 					<p>Izostanaka s predavanja: <strong class="izostanci"> <?php echo $sl->izostanak_pr;?> / <?php echo $sl->max_izostanaka_pr;?> </strong> </p>
 				</div>
 				<div class="small-6 columns">
-					<img class="dodaj" id="pr_<?php echo $sl->sifra;?>" src="img/plus.png" alt="+"/>				
+				<img class="dodaj" id="pr_<?php echo $sl->sifra;?>" src="img/plus.png" alt="+"/>				
+				<img class="oduzmi" id="pr_<?php echo $sl->sifra;?>" src="img/minus.png" alt="-"/>
 				</div>
 			</div>
 			<div class="row centar">
@@ -56,6 +67,7 @@
 				</div>
 				<div class="small-6 columns">
 					<img class="dodaj" id="vj_<?php echo $sl->sifra;?>" src="img/plus.png" alt="+"/>
+					<img class="oduzmi" id="vj_<?php echo $sl->sifra;?>" src="img/minus.png" alt="-"/>
 				</div>
 			</div>
 		</div>
@@ -70,6 +82,24 @@
 			$.ajax({
 						type: "POST",
 						url: "dodajIzostanak.php",
+						data: "tip=" + tip + "&sifra=" + sifra,
+						success: function(vratioServer){
+							if(vratioServer=="OK"){
+								location.reload();
+							}else{
+								alert(vratioServer);
+							}
+						}
+						
+			});	
+			return false;
+		})
+		$(".oduzmi").click(function(){
+			var tip = $(this).attr("id").split("_")[0];
+			var sifra = $(this).attr("id").split("_")[1];
+			$.ajax({
+						type: "POST",
+						url: "oduzmiIzostanak.php",
 						data: "tip=" + tip + "&sifra=" + sifra,
 						success: function(vratioServer){
 							if(vratioServer=="OK"){
