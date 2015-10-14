@@ -1,14 +1,15 @@
 <?php
 include 'konfiguracija.php';
 
-$check = $con->prepare("select * from korisnik where korisnik=:korisnik;");
-$check -> bindParam(":korisnik", $_POST["korisnik"]);
-$check -> execute();
+$_POST["lozinka"] = md5($_POST["lozinka"]);
+
+$check = $con->prepare("select * from korisnik where korisnik=:korisnik and lozinka=:lozinka;");
+$check -> execute($_POST);
 $operater = $check -> fetch(PDO::FETCH_OBJ);
 
-$_SESSION['operater'] = $operater;
 if($operater==NULL):
-	header("location: index.php?err=1");
+	echo "NE";
 else:
-	header("location: home.php");
+	$_SESSION['operater'] = $operater;
+	echo "DA";
 endif;

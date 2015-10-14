@@ -12,20 +12,8 @@ endif;
 ?>
 
 	<body>
-	<div class="traka">
-		<div class="row">
-			<div class="small-12 columns">
-				<div class="small-3 columns">
-				<?php if(isset($_SESSION["operater"]->slika)):?>
-					<img style="height: 40px; max-width: 60px; line-height: 40px;" src="img/profilne/<?php echo $_SESSION["operater"]->slika;?>" />
-				<?php endif;?>				</div>
-				<div class="small-9 columns">
-					<strong style="float: left;"> <?php echo $_SESSION["operater"]->korisnik;?> </strong>
-					<a href="predmeti.php" style="float:right;"> Predmeti </a> 
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include_once "nav.php";?>
+	
 	
 		<?php foreach($slusa as $sl):
 		$profesor = $con->prepare("select * from profesor inner join predmet on profesor.sifra=predmet.profesor where profesor.sifra=:p");
@@ -54,7 +42,7 @@ endif;
 
 			<div class="row centar">
 				<div class="small-6 columns">
-					<p>Izostanaka s predavanja: <strong class="izostanci"> <?php echo $sl->izostanak_pr;?> / <?php echo $sl->max_izostanaka_pr;?> </strong> </p>
+					<p>Predavanja: <strong class="izostanci"> <?php echo $sl->izostanak_pr;?> / <?php echo $sl->max_izostanaka_pr;?> </strong> </p>
 				</div>
 				<div class="small-6 columns">
 				<img class="dodaj" id="pr_<?php echo $sl->sifra;?>" src="img/plus.png" alt="+"/>				
@@ -63,7 +51,7 @@ endif;
 			</div>
 			<div class="row centar">
 				<div class="small-6 columns">
-					<p>Izostanaka s vježbi/seminara: <strong class="izostanci"> <?php echo $sl->izostanak_vj;?> / <?php echo $sl->max_izostanaka_vj;?> </strong> </p>
+					<p>Vježbe/seminari: <strong class="izostanci"> <?php echo $sl->izostanak_vj;?> / <?php echo $sl->max_izostanaka_vj;?> </strong> </p>
 				</div>
 				<div class="small-6 columns">
 					<img class="dodaj" id="vj_<?php echo $sl->sifra;?>" src="img/plus.png" alt="+"/>
@@ -74,7 +62,7 @@ endif;
 		<?php 
 		endforeach;
 		?>
-	<?php include_once "footer.php";?>
+	<?php include_once "js.php";?>
 	<script>
 		$(".dodaj").click(function(){
 			var tip = $(this).attr("id").split("_")[0];

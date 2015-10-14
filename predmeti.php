@@ -22,21 +22,8 @@ $subjects = $predmeti->fetchAll(PDO::FETCH_OBJ);
 ?>
 
 	<body>
-	<div class="traka">
-		<div class="row">
-			<div class="small-12 columns">
-				<div class="small-3 columns">
-				<?php if(isset($_SESSION["operater"]->slika)):?>
-					<img style="height: 40px; max-width: 60px; line-height: 40px;" src="img/profilne/<?php echo $_SESSION["operater"]->slika;?>" />
-				<?php endif;?>
-				</div>
-				<div class="small-9 columns">
-					<strong style="float: left;"> <?php echo $_SESSION["operater"]->korisnik;?> </strong>
-					<a href="home.php" style="float: right;"> Početna </a> 
-				</div>
-			</div>
-		</div>
-	</div>
+		<?php include_once "nav.php";?>
+
 	
 	<div class="row">
 		<div class="small-12 columns centar">
@@ -92,7 +79,7 @@ $subjects = $predmeti->fetchAll(PDO::FETCH_OBJ);
 		<?php
 		endforeach;
 		?>
-	<?php include_once "footer.php";?>
+	<?php include_once "js.php";?>
 	<script>
 		$(".dodaj").click(function(){
 			var sifra = $(this).attr("id").split("_")[1];

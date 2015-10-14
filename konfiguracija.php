@@ -3,7 +3,7 @@
 $server="localhost";
 $baza="raspored";
 $user="root";
-$pass="000000";
+$pass="";
 $put="/Raspored/";
 
 $con = new PDO("mysql:dbname=" . $baza . 

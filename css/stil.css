@@ -1,6 +1,29 @@
 body{
 	background-color: #FFF;
 }
+a{
+	color: #729F98;
+}
+#logo{
+	height: inherit;
+	width: inherit;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+#profilna {
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+}
+.tipka{
+	background-color: #707070;
+	border-radius: 5px;
+}
+.tipka:hover{
+	background-color: #729F98;
+}
 .centar{
 	text-align: center;
 	line-height: 100%;
@@ -10,8 +33,13 @@ body{
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.5em;
 }
-input[type="text"]{
+input:not(#upload_file){
 	height: 50px;
+	border: 3px solid #f0f0f0;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin: 3px 0 3px 0;
 }
 .dodaj, .oduzmi{
 	cursor: pointer;
@@ -24,29 +52,19 @@ input[type="text"]{
 	height: 45px;
 	width: 45px;
 }
-.footer{
-	position: fixed;
-	bottom: 0px;
-	height: 40px;
-	line-height: 40px;
-	width: 100%;
-	text-align: center;
-	background-color: #283018;
-	font-size: 1.2em;
-}
 .prijava {
 	text-align: center;
 	margin-top: 10%;
 }
-.prijava input {
+.prijava input:not(#upload_file){
 	width: 90%;
 }
 .traka{
 	width: 100%;
-	height: 70px;
-	line-height: 70px;
-	background-color: #283018;
+	height: 150px;
+	line-height: 150px;
 	font-size: 1.2em;
+	vertical-align: middle;
 }
 .predmet{
 	min-height: 275px;
@@ -58,16 +76,10 @@ input[type="text"]{
 }
 .traka a, .traka strong, .footer strong{
 	font-family: 'Open Sans Condensed', sans-serif;
-	color: white;
 }
 .naslov{
 	font-family: 'Open Sans Condensed', sans-serif;
 	line-height: 38px;
 	color: #729f98;
 	text-align: left;
-}
-@media screen and (max-width: 600px){
-	.footer{
-		display: none;
-	}
 }

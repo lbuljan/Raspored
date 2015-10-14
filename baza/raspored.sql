@@ -7,7 +7,14 @@ alter database character set utf8 collate utf8_general_ci;
 create table korisnik(
 	sifra int not null primary key auto_increment,
 	korisnik varchar(30) not null,
-	slika varchar(100)
+	lozinka varchar(100) not null,
+	slika varchar(100) default "placeholder.png"
+);
+
+create table postavke(
+	korisnik int not null,
+	alarm boolean default 0,
+	alarm_time time default "00:15:00"
 );
 
 create table slusa(
@@ -22,6 +29,10 @@ create table predmet(
 	naziv varchar(100) not null,
 	profesor int not null,
 	asistent int,
+	dan_vj varchar(20) not null,
+	sat_vj time not null,
+	dan_pr varchar(20) not null,
+	sat_pr time not null,
 	max_izostanaka_vj int not null,
 	max_izostanaka_pr int not null
 );
@@ -36,15 +47,15 @@ alter table slusa add foreign key (korisnik) references korisnik(sifra);
 alter table slusa add foreign key (predmet) references predmet(sifra);
 alter table predmet add foreign key (profesor) references profesor(sifra);
 alter table predmet add foreign key (asistent) references profesor(sifra);
+alter table postavke add foreign key (korisnik) references korisnik(sifra);
 
-insert into korisnik (korisnik) values ("lbuljan");
+insert into korisnik (korisnik, lozinka, slika) values ("lbuljan", md5("admin"), "sloth.jpg");
 insert into profesor(ime, prezime) values ("Mirna", "Varga"), ("Damir", "Hasenay"), ("Maja", "Krtalić"), ("Gordana", "Dukić"), ("Ines", "Hocenski"), ("Sanjica", "Faletar Tanacković"), ("Darko", "Lacović"), ("Josipa", "Selthofer"), ("Kornelija", "Petr Balog"), ("Kristina", "Feldvari"), ("Milijana", "Mičunović");
-insert into predmet (naziv, profesor, asistent, max_izostanaka_pr, max_izostanaka_vj) values ("Engleski jezik za napredne 1", 1, NULL, 6, 6),
-		("Upravljanje u nakladništvu i knjižarstvu", 8, NULL, 4, 4),
-		("Čuvanje i zaštita elektroničkih dokumenata", 2, 3, 4, 4),
-		("Marketing knjižničnih proizvoda i usluga", 4, 5, 4, 4),
-		("Marketing u nakladništvu i knjižarstvu", 4, 5, 4, 4),
-		("Teorija i praksa organizacije informacija", 9, 10, 4, 4),
-		("Arhitektura knjižnica", 6, 7, 4, 4),
-		("Informacijska politika i tehnološke promjene", 11, NULL, 4, 4);
-insert into slusa (korisnik, predmet) values (1, 2), (1, 4), (1, 6), (1, 8);
+insert into predmet (naziv, profesor, asistent, dan_vj, sat_vj, dan_pr, sat_pr, max_izostanaka_pr, max_izostanaka_vj) values
+		("Upravljanje u nakladništvu i knjižarstvu", 8, NULL, "Utorak", "9:00:00", "Petak", "10:30:00", 4, 4),
+		("Čuvanje i zaštita elektroničkih dokumenata", 2, 3, "Petak", "8:45:00", "Utorak", "14:00:00", 4, 4),
+		("Marketing knjižničnih proizvoda i usluga", 4, 5, "Utorak", "18:15:00", "Utorak", "15:00:00", 4, 4),
+		("Marketing u nakladništvu i knjižarstvu", 4, 5, "Utorak", "16:30:00", "Utorak", "15:00:00", 4, 4),
+		("Teorija i praksa organizacije informacija", 9, 10, "Petak", "14:00:00", "Srijeda", "8:45:00", 4, 4),
+		("Arhitektura knjižnica", 6, 7, "Četvrtak", "13:00:00", "Četvrtak", "12:15:00", 4, 4),
+		("Informacijska politika i tehnološke promjene", 11, NULL, "Četvrtak", "15:45:00", "Četvrtak", "14:45:00", 4, 4);
