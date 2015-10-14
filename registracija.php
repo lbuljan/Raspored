@@ -13,7 +13,7 @@
 				<input type="password" id="p_lozinka" name="p_lozinka" placeholder="Potvrdi lozinku *"/>
 				<label> Profilna slika (nije obavezna) </label>
 				<div class="row">
-					<input id="upload_file" type="image" name="photo" />
+					<input id="upload_file" type="file" name="photo" />
 				</div>
 				<br/>
 				<button class="tipka" id="registriraj"> Registriraj se! </button>
